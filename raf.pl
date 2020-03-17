@@ -67,3 +67,13 @@ spitfire(unit^payload/payload^pylons,[]).
 spitfire(unit^psi,0).
 spitfire(unit^skill,"Client").
 spitfire(unit^type,"SpitfireLFMkIX").
+
+hook(element(zip(Element, unit^onboard_num), OnboardNum)) :-
+    element_onboard_num(Element, OnboardNum).
+
+element_onboard_num(Element/Section/Squadron/raf, OnboardNum) :-
+    element_section(Element/Section/Squadron/raf, Section/Squadron/raf),
+    squadron(_, OnboardNum12, Squadron),
+    section(Section, OnboardNum3_, _),
+    OnboardNum3 is OnboardNum3_ + Element - 1,
+    format(string(OnboardNum), '~s~c', [OnboardNum12, OnboardNum3]).
