@@ -6,6 +6,10 @@ hook(formation(country(raf), uk)).
 squadron(19,    "QV",   luton).
 squadron(41,    "EB",   mitor).
 squadron(54,    "KL",   rabbit).
+squadron(64,    "SH",   freema).
+squadron(66,    "LZ",   fibius).
+squadron(72,    "RN",   tennis).
+squadron(74,    "ZP",   dysoe).
 squadron(92,    "QJ",   gannic).
 
 section(red,    0'A,    a).
