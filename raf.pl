@@ -1,7 +1,7 @@
 :- discontiguous hook/1.
 :- public hook/1.
 
-hook(formation(country(raf), uk)).
+hook(echelon(11/group/raf, country(uk))).
 
 squadron(19,    "QV",   luton).
 squadron(41,    "EB",   mitor).
@@ -19,7 +19,7 @@ section(green,  0'X,    b).
 
 element(Element) :- between(1, 3, Element).
 
-hook(element(section(Element), Section)) :-
+hook(element(Element, section(Section))) :-
     element_section(Element, Section).
 
 element_section(Element/Section/Squadron/raf, Section/Squadron/raf) :-
@@ -27,9 +27,9 @@ element_section(Element/Section/Squadron/raf, Section/Squadron/raf) :-
     section(Section, _, _),
     element(Element).
 
-hook(section(formation(Section), raf)) :-
+hook(section(Section, echelon(11/group/raf))) :-
     section_name(Section, _).
-hook(section(zip(Section, group^name), Name)) :-
+hook(section(Section, zip(group^name, Name))) :-
     section_name(Section, Name).
 
 section_name(Section/Squadron/raf, Name) :-
@@ -46,7 +46,7 @@ section_name_(Section/Squadron/raf, Name) :-
            '~d Sqn (~s) ~s-Flight ~s',
            [No, Squadron_, Flight_, Section_]).
 
-hook(element(zip(Element, unit^name), Name)) :-
+hook(element(Element, zip(unit^name, Name))) :-
     element_name(Element, Name).
 
 element_name(Element/Section/Squadron/raf, Name) :-
@@ -54,9 +54,9 @@ element_name(Element/Section/Squadron/raf, Name) :-
     section_name_(Section/Squadron/raf, Name0),
     format(string(Name), '~s-~d', [Name0, Element]).
 
-hook(element(zip(Element, Zip), Now)) :-
+hook(element(Element, zip(Zipper, Now))) :-
     element_name(Element, _),
-    spitfire(Zip, Now).
+    spitfire(Zipper, Now).
 
 spitfire(unit^'Radio'/'Radio'^1/'Radio'^channels/channels^1,124).
 spitfire(unit^'Radio'/'Radio'^1/'Radio'^channels/channels^2,40).
@@ -72,7 +72,7 @@ spitfire(unit^psi,0).
 spitfire(unit^skill,"Client").
 spitfire(unit^type,"SpitfireLFMkIX").
 
-hook(element(zip(Element, unit^onboard_num), OnboardNum)) :-
+hook(element(Element, zip(unit^onboard_num, OnboardNum))) :-
     element_onboard_num(Element, OnboardNum).
 
 element_onboard_num(Element/Section/Squadron/raf, OnboardNum) :-
