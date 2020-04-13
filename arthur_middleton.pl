@@ -9,7 +9,9 @@ hook(element(Element, zip(unit^name, Name))) :- element_name(Element, Name).
 
 element(Element) :- element_name(Element, _).
 
-hook(element(Element, zip(Zipper, Now))) :- element(Element), zip(Zipper, Now).
+hook(element(Element, zip(Situation, Now))) :-
+    element(Element),
+    zip(Situation, Now).
 
 zip(unit^frequency,     127500000).
 zip(unit^modulation,    0).
