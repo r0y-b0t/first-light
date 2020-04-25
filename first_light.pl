@@ -23,4 +23,4 @@ hook(task(neutrals, "")).
 hook(initially(date(day), 13)).
 hook(initially(date(month), 8)).
 hook(initially(date(year), 1940)).
-hook(initially(start(time), 15600)).
+hook(initially(abs(time), 15600)).
