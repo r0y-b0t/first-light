@@ -1,4 +1,4 @@
-﻿hook(description("The time will come, when thou shalt lift thine eyes\n\c
+hook(description("The time will come, when thou shalt lift thine eyes\n\c
 To watch a long-drawn battle in the skies.\n\c
 While aged peasants, too amazed for words,\n\c
 Stare at the flying fleets of wond’rous birds.\n\c
@@ -19,3 +19,8 @@ hook(task(blue, "Spring chicken to shite hawk in one easy lesson. Look! Search f
 Never was so much owed to so few.")).
 
 hook(task(neutrals, "")).
+
+hook(initially(date(day), 13)).
+hook(initially(date(month), 8)).
+hook(initially(date(year), 1940)).
+hook(initially(start(time), 15600)).
