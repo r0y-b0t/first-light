@@ -81,3 +81,39 @@ element_onboard_num(Element/Section/Squadron/raf, OnboardNum) :-
     section(Section, OnboardNum3_, _),
     OnboardNum3 is OnboardNum3_ + Element - 1,
     format(string(OnboardNum), '~s~c', [OnboardNum12, OnboardNum3]).
+
+payload(
+    section(Section),
+    group{ communication:true,
+           frequency:124,
+           hidden:false,
+           modulation:0,
+           name:Name,
+           radioSet:false,
+           task:"CAP",
+           tasks:[],
+           uncontrolled:false
+         }) :-
+    section_name(Section, Name).
+payload(
+    element(Element),
+    unit{ callsign:callsign{1:1,2:1,3:1,name:"Enfield11"},
+          livery_id:"RAF Standard",
+          name:Name,
+          onboard_num:OnboardNum,
+          payload:payload{ ammo_type:1,
+                           chaff:0,
+                           flare:0,
+                           fuel:247,
+                           gun:100,
+                           pylons:[]
+                         },
+          psi:0,
+          skill:"Client",
+          type:"SpitfireLFMkIX"
+        }) :-
+    element_name(Element, Name),
+    element_onboard_num(Element, OnboardNum).
+
+hook(section(Section, payload(Payload))) :- payload(section(Section), Payload).
+hook(element(Element, payload(Payload))) :- payload(element(Element), Payload).
